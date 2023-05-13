@@ -1,0 +1,67 @@
+type Query {
+    kiteSpotOverview:[KiteSpot!]!
+    topKiteSpots(count: Int, offset: Int):[KiteSpot!]!
+    kiteSpot(id: ID!): KiteSpot!
+}
+
+type Mutation {
+    rateSpot(spotId: ID!, userName: String!, userEMail: String!, score: Float!, comment: String): Boolean!
+}
+
+type KiteSpot {
+    id: ID!
+    name: String!
+    description: String
+    images: [Image!]!
+    experienceLevel: ExperienceLevel!
+    disciplines: [Discipline!]!
+    nearestAirports: [Airport!]!
+    location: Location!
+    parkingSpot: [ParkingSpot!]!
+    userRatings: [UserRating!]!
+}
+
+type UserRating {
+    user: User!
+    score: Float!
+    comment: String
+    createdAt: String!
+}
+
+type User {
+    name: String!
+    email: String!
+}
+
+type Image {
+    url: String!
+    description: String!
+}
+
+type Airport {
+    name: String!
+    location: Location!
+}
+
+type Location {
+    latitude: Float!
+    longitude: Float!
+}
+
+type ParkingSpot {
+    location: Location!
+    description: String!
+    campingAllowed: Boolean!
+}
+
+enum ExperienceLevel {
+    BEGINNER
+    EXPERIENCED
+    PROFESSIONAL
+}
+
+enum Discipline {
+    WAVE_KITING
+    BIG_AIR
+    FREESTYLE
+}
