@@ -106,7 +106,7 @@ class KiteSpotRepo {
     fun getTopKiteSpots(count: Int?, offset: Int) =
         kiteSpots.sortedByDescending { it.userRatings.sumOf { it.score.toDouble() } / it.userRatings.size }.subList(
             offset,
-            offset + (count ?: (kiteSpots.size - 1 - offset)),
+            offset + (count ?: (kiteSpots.size - offset)),
         )
     fun getAll() = kiteSpots
     fun rateSpot(spotId: String, userId: String, score: Float, comment: String?): Boolean {

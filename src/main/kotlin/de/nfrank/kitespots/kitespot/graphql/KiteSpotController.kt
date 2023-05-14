@@ -18,7 +18,8 @@ class KiteSpotController(
     fun kiteSpotOverview() = kiteSpotRepo.getAll()
 
     @QueryMapping
-    fun topKiteSpots(@Argument count: Int?, @Argument offset: Int = 0) = kiteSpotRepo.getTopKiteSpots(count, offset)
+    fun topKiteSpots(@Argument count: Int?, @Argument offset: Int?) =
+        kiteSpotRepo.getTopKiteSpots(count, offset ?: 0)
 
     @QueryMapping
     fun kiteSpot(@Argument id: String) = kiteSpotRepo.getKiteSpot(id)
