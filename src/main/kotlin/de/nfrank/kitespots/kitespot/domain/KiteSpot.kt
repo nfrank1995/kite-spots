@@ -5,7 +5,7 @@ import de.nfrank.kitespots.common.Image
 import de.nfrank.kitespots.common.Location
 import de.nfrank.kitespots.parkingspot.ParkingSpot
 import de.nfrank.kitespots.userrating.UserRating
-import de.nfrank.kitespots.userrating.user.User
+import de.nfrank.kitespots.user.User
 import java.time.Instant
 
 data class KiteSpot(
@@ -20,8 +20,8 @@ data class KiteSpot(
     val parkingSpots: List<ParkingSpot>,
     val userRatings: MutableList<UserRating>,
 ) {
-    fun rate(user: User, score: Float, comment: String?): Boolean {
-        return this.userRatings.add(UserRating(user, score, comment, Instant.now()))
+    fun rate(userId: String, score: Float, comment: String?): Boolean {
+        return this.userRatings.add(UserRating(userId, score, comment, Instant.now()))
     }
 }
 

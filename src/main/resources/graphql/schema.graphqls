@@ -5,7 +5,7 @@ type Query {
 }
 
 type Mutation {
-    rateSpot(spotId: ID!, userName: String!, userEMail: String!, score: Float!, comment: String): Boolean!
+    rateSpot(spotId: ID!, userId: String!, score: Float!, comment: String): Boolean!
 }
 
 type KiteSpot {
@@ -29,6 +29,7 @@ type UserRating {
 }
 
 type User {
+    id: ID!
     name: String!
     email: String!
 }

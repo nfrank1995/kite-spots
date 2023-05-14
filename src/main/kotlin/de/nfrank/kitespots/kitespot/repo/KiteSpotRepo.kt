@@ -8,7 +8,7 @@ import de.nfrank.kitespots.kitespot.domain.ExperienceLevel
 import de.nfrank.kitespots.kitespot.domain.KiteSpot
 import de.nfrank.kitespots.parkingspot.ParkingSpot
 import de.nfrank.kitespots.userrating.UserRating
-import de.nfrank.kitespots.userrating.user.User
+import de.nfrank.kitespots.user.User
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.time.Period
@@ -17,7 +17,7 @@ import java.time.Period
 class KiteSpotRepo {
     private val kiteSpots = listOf(
         KiteSpot(
-            id = "Spot001",
+            id = "spot001",
             name = "Terifa",
             description = "Great spot at the southern coast of spain. Strong wind and big waves create the perfect conditions for everyone who wants to surf down a wave or loop thru the air.",
             images = listOf(),
@@ -37,7 +37,7 @@ class KiteSpotRepo {
             parkingSpots = emptyList(),
             userRatings = mutableListOf(
                 UserRating(
-                    user = User("Pete1987", "peter.baker@gmail.com"),
+                    userId = "user001",
                     score = 4.5f,
                     comment = "Great Spot for kiteloops and big air!!!!!!",
                     createdAt = Instant.now().minus(Period.ofDays(123)),
@@ -45,7 +45,7 @@ class KiteSpotRepo {
             ),
         ),
         KiteSpot(
-            id = "Spot002",
+            id = "spot002",
             name = "Amoudara",
             description = "Nice spot at the northern coast of crete.",
             images = listOf(),
@@ -67,7 +67,7 @@ class KiteSpotRepo {
             ),
             userRatings = mutableListOf(
                 UserRating(
-                    user = User("BigAirJosh92", "josh.bigair@gmail.com"),
+                    userId = "user002",
                     score = 3.0f,
                     comment = "The spot is okay, sadly the winds aren't strong enough for kiteloops and the water is a little bit cold coming from the river.",
                     createdAt = Instant.now().minus(Period.ofDays(523)),
@@ -93,7 +93,7 @@ class KiteSpotRepo {
             parkingSpots = emptyList(),
             userRatings = mutableListOf(
                 UserRating(
-                    user = User("Anonym", ""),
+                    userId = "userXXX",
                     score = 1.5f,
                     comment = "Went there to learn kitesurfing. The guys at the station are great but the waves made it way to hard to learn. Wouldn't recomment.",
                     createdAt = Instant.now().minus(Period.ofDays(243)),
@@ -109,7 +109,7 @@ class KiteSpotRepo {
             offset + (count ?: (kiteSpots.size - 1 - offset)),
         )
     fun getAll() = kiteSpots
-    fun rateSpot(spotId: String, user: User, score: Float, comment: String?): Boolean {
-        return this.kiteSpots.find { it.id == spotId }?.rate(user, score, comment) ?: false
+    fun rateSpot(spotId: String, userId: String, score: Float, comment: String?): Boolean {
+        return this.kiteSpots.find { it.id == spotId }?.rate(userId, score, comment) ?: false
     }
 }
